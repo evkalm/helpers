@@ -8,7 +8,7 @@ import (
 )
 
 func buildPrimitiveMess(a any) string {
-	v := reflect.ValueOf(a) //
+	v := reflect.ValueOf(a)
 
 	wrap := ""
 	if v.Kind() == reflect.String {

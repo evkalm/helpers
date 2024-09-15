@@ -7,7 +7,7 @@ import (
 )
 
 func commonTypeName(a any) string {
-	v := reflect.ValueOf(a) //
+	v := reflect.ValueOf(a)
 
 	if a == nil {
 		return "invalid"

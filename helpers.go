@@ -28,7 +28,7 @@ func init() {
 }
 
 func PrettyPrint(a any) {
-	var mess strings.Builder //
+	var mess strings.Builder
 	mess.WriteString(colorName(commonTypeName(a)))
 	mess.WriteString(" " + typeToString(a) + " = ")
 	mess.WriteString(prettyPrintElem(reflect.ValueOf(a).Interface(), 0, false))
