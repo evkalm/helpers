@@ -18,7 +18,7 @@ var colorErr func(a ...interface{}) string
 
 // init
 func init() {
-	colorValue = color.New(color.Attribute(38), color.Attribute(5), color.Attribute(70)).SprintFunc() // 106, 107, 71,,,108, 10
+	colorValue = color.New(color.Attribute(38), color.Attribute(5), color.Attribute(70)).SprintFunc()
 	colorName = color.New(color.Attribute(38), color.Attribute(5), color.Attribute(220)).SprintFunc()
 	colorType = color.New(color.Attribute(38), color.Attribute(5), color.Attribute(60)).SprintFunc()
 	colorPipe = color.New(color.Attribute(38), color.Attribute(5), color.Attribute(237)).SprintFunc()
