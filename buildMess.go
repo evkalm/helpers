@@ -107,8 +107,13 @@ func buildArrayMess(a any, lev int, isJSON bool) string {
 		}
 
 		mess.WriteString(newRow + indent)
-		// to print primitives in an array
-		isPrintType := (!isValuesOnlyPrimitive && isIface) || (isValuesOnlyPrimitive && !isPrimit)
+
+		var isPrintType bool
+		//isPrintType = (!isValuesOnlyPrimitive && isIface) || (isValuesOnlyPrimitive && !isPrimit)
+		if isIface && isPrimit {
+			isPrintType = true
+		}
+
 		if isJSON {
 			isPrintType = false
 		}
@@ -119,23 +124,20 @@ func buildArrayMess(a any, lev int, isJSON bool) string {
 		}
 
 		var vvi any
-
-		//if vi.IsNil() {
-
 		if !vi.IsValid() {
 			vvi = "unknow"
-			//vvi = nil
 		} else {
 			vvi = vi.Interface()
 		}
 
 		mess.WriteString(prettyPrintElem(vvi, lev, isJSON))
 		if i == v.Len()-1 {
-			mess.WriteString(newRow + lastIndent + "]")
+			mess.WriteString(newRow + lastIndent)
 		} else {
 			mess.WriteString("," + space)
 		}
 	}
+	mess.WriteString("]")
 
 	return mess.String()
 }
