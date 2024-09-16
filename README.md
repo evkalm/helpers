@@ -7,5 +7,5 @@ Provides convenient printing and pretty of structures, slices, maps, arrays and 
 ## Installation
 
 ```bash
-$ go get github.com/evkalm/helpers
+go get github.com/evkalm/helpers
 ```
