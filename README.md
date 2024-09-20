@@ -8,5 +8,5 @@ Provides convenient printing and pretty-printing of structures, slices, maps, ar
 
 
 ```bash
-go get github.com/evkalm/helpers
+go get github.com/evkalm/helpers@latest
 ```
