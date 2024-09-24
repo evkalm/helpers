@@ -7,24 +7,31 @@ import (
 	"strings"
 )
 
-func buildPrimitiveMess(a any) string {
+func buildPrimitiveMess(a any, lev int) string {
 	v := reflect.ValueOf(a)
 
-	wrap := ""
+	if !v.IsValid() {
+		return "nil"
+	}
+
 	if v.Kind() == reflect.String {
-		wrap = "\""
+		str := "\"" + v.String() + "\""
+
+		rows := strings.Split(str, "\n")
+		indent := printIndent(lev)
+		for i, row := range rows {
+			if row != "" {
+				if i == 0 {
+					rows[i] = colorValue(row)
+				} else {
+					rows[i] = indent + colorValue(row)
+				}
+			}
+		}
+		return strings.Join(rows, "\n")
 	}
 
-	value := "nil"
-	if v.IsValid() {
-		value = fmt.Sprintf("%v", v.Interface())
-	}
-
-	return fmt.Sprintf("%s%s%s",
-		colorValue(wrap),
-		colorValue(value),
-		colorValue(wrap),
-	)
+	return colorValue(fmt.Sprintf("%v", v.Interface()))
 }
 
 func buildStructMess(a any, lev int, isJSON bool) string {

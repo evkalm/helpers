@@ -48,7 +48,7 @@ func prettyPrintElem(a any, lev int, isJSON bool) string {
 		if isJSON && v.Interface() == "unknow" {
 			return colorValue("null")
 		}
-		return buildPrimitiveMess(v.Interface())
+		return buildPrimitiveMess(v.Interface(), lev+1)
 
 	case reflect.Array, reflect.Slice:
 		return buildArrayMess(v.Interface(), lev+1, isJSON)

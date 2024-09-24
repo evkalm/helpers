@@ -81,11 +81,11 @@ func ptrValToMess(a any, isJSON bool) string {
 
 	t := v.Type().Kind()
 	if isPrimitive(t) {
-		return buildPrimitiveMess(a)
+		return buildPrimitiveMess(a, 0)
 	}
 	switch t {
 	case reflect.Uintptr:
-		return buildPrimitiveMess(a)
+		return buildPrimitiveMess(a, 0)
 
 	case reflect.Struct, reflect.Slice, reflect.Array, reflect.Map:
 		return prettyPrintElem(v.Interface(), 1, isJSON)
