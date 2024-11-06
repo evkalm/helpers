@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 )
 
 func PrettyPrint(a any) {
@@ -54,6 +55,9 @@ func prettyPrintElem(a any, lev int, isJSON bool) string {
 		return buildArrayMess(v.Interface(), lev+1, isJSON)
 
 	case reflect.Struct:
+		if v.Type() == reflect.TypeOf(time.Time{}) {
+			return buildPrimitiveMess(fmt.Sprintf("%s", a), lev+1)
+		}
 		return buildStructMess(v.Interface(), lev+1, isJSON)
 
 	case reflect.Map:
